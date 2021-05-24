@@ -28,6 +28,9 @@ public class Employee {
 	@Column(name = "bootcamp_last_attended")
 	private String bootcampLastAttended;
 	
+//	@Column(name = "manager_id")
+//	private long managerId;
+	
 	
 	public long getId() {
 		return id;

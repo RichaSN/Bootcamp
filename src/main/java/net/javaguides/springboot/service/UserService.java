@@ -7,4 +7,6 @@ import net.javaguides.springboot.model.User;
 
 public interface UserService extends UserDetailsService{
 	User save(UserRegistrationDto registrationDto);
+	
+	User saveManager(UserRegistrationDto registrationDto);
 }

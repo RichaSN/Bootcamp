@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import net.javaguides.springboot.dto.UserRegistrationDto;
+import net.javaguides.springboot.model.Employee;
 import net.javaguides.springboot.model.Role;
 import net.javaguides.springboot.model.User;
 import net.javaguides.springboot.repository.UserRepository;
@@ -20,20 +21,23 @@ import net.javaguides.springboot.repository.UserRepository;
 @Service
 public class UserServiceImpl implements UserService{
 
+	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private EmployeeService employeeService;
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
-	public UserServiceImpl(UserRepository userRepository) {
-		super();
-		this.userRepository = userRepository;
-	}
 
 	@Override
 	public User save(UserRegistrationDto registrationDto) {
-		User user = new User(registrationDto.getFirstName(), 
-				registrationDto.getLastName(), registrationDto.getEmail(),
+		String firstName = registrationDto.getFirstName();
+		String lastName = registrationDto.getLastName();
+		String email = registrationDto.getEmail();
+		User user = new User(firstName, 
+				lastName, email,
 				passwordEncoder.encode(registrationDto.getPassword()), Arrays.asList(new Role("ROLE_USER")));
 		
 		return userRepository.save(user);
@@ -51,5 +55,22 @@ public class UserServiceImpl implements UserService{
 	
 	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){
 		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+	}
+
+	@Override
+	public User saveManager(UserRegistrationDto registrationDto) {
+		String firstName = registrationDto.getFirstName();
+		String lastName = registrationDto.getLastName();
+		String email = registrationDto.getEmail();
+		User user = new User(firstName, 
+				lastName, email,
+				passwordEncoder.encode(registrationDto.getPassword()), Arrays.asList(new Role("ROLE_MANAGER")));
+		Employee employee = new Employee();
+		employee.setFirstName(firstName);
+		employee.setLastName(lastName);
+		employee.setEmail(email);
+		employeeService.saveEmployee(employee);
+		
+		return userRepository.save(user);
 	}
 }
