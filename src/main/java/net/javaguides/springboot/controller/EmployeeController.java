@@ -33,11 +33,8 @@ public class EmployeeController {
 		employee1.setFirstName("fn1");
 		employee1.setLastName("ln1");
 		employee1.setEmail("fn1@app.com");
-//		Date bootcampLastAttended = new Date();
-//		bootcampLastAttended.setYear(2010);
-//		bootcampLastAttended.setMonth(07);
-//		bootcampLastAttended.setDate(14);
 		employee1.setBootcampLastAttended("2020-05-09");
+		employee1.setManagerUserName("mgr1@test.com");
 		employeeService.saveEmployee(employee1);
 		
 		Employee employee2=new Employee();
@@ -45,13 +42,31 @@ public class EmployeeController {
 		employee2.setLastName("ln2");
 		employee2.setEmail("fn2@app.com");
 		employee2.setBootcampLastAttended("2018-05-09");
+		employee2.setManagerUserName("mgr1@test.com");
 		employeeService.saveEmployee(employee2);
 		
 		Employee employee3=new Employee();
 		employee3.setFirstName("fn3");
 		employee3.setLastName("ln3");
 		employee3.setEmail("fn3@app.com");
+		employee3.setManagerUserName("mgr1@test.com");
 		employeeService.saveEmployee(employee3);
+		
+		Employee employee4=new Employee();
+		employee4.setFirstName("fn4");
+		employee4.setLastName("ln4");
+		employee4.setEmail("fn4@app.com");
+		employee4.setManagerUserName("mgr2@test.com");
+		employee4.setBootcampLastAttended("2020-03-09");
+		employeeService.saveEmployee(employee4);
+		
+		Employee employee5=new Employee();
+		employee5.setFirstName("fn5");
+		employee5.setLastName("ln5");
+		employee5.setEmail("fn5@app.com");
+		employee5.setBootcampLastAttended("2020-05-02");
+		employee5.setManagerUserName("mgr2@test.com");
+		employeeService.saveEmployee(employee5);
 	}
 	
 	// display list of employees

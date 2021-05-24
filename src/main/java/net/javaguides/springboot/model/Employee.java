@@ -6,10 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "employees")
 public class Employee {
 	
 	@Id
@@ -28,8 +26,8 @@ public class Employee {
 	@Column(name = "bootcamp_last_attended")
 	private String bootcampLastAttended;
 	
-//	@Column(name = "manager_id")
-//	private long managerId;
+	@Column(name = "manager_username")
+	private String managerUserName;
 	
 	
 	public long getId() {
@@ -61,5 +59,11 @@ public class Employee {
 	}
 	public void setBootcampLastAttended(String bootcampLastAttended) {
 		this.bootcampLastAttended = bootcampLastAttended;
+	}
+	public String getManagerUserName() {
+		return managerUserName;
+	}
+	public void setManagerUserName(String managerUserName) {
+		this.managerUserName = managerUserName;
 	}
 }

@@ -28,11 +28,15 @@ public class UserRegistrationController {
 	private void populateTestManagerData() {
 		// TODO Auto-generated method stub
 		UserRegistrationDto dtoAdmin = new UserRegistrationDto("admFn1", "admLn1", "test@test.com", "test");
-		userService.saveManager(dtoAdmin);
-		UserRegistrationDto dto1 = new UserRegistrationDto("mgrFn1", "mgrLn1", "mgr1@test.com", "password123");
+		userService.save(dtoAdmin);
+		UserRegistrationDto dto1 = new UserRegistrationDto("mgrFn1", "mgrLn1", "mgr1@test.com", "test");
 		userService.saveManager(dto1);
-		UserRegistrationDto dto2 = new UserRegistrationDto("mgrFn2", "mgrLn2", "mgr2@test.com", "password123");
+		UserRegistrationDto dto2 = new UserRegistrationDto("mgrFn2", "mgrLn2", "mgr2@test.com", "test");
 		userService.saveManager(dto2);
+		UserRegistrationDto dto3 = new UserRegistrationDto("mgrFn3", "mgrLn3", "mgr3@test.com", "test");
+		userService.saveManager(dto3);
+		UserRegistrationDto dto4 = new UserRegistrationDto("mgrFn4", "mgrLn4", "mgr4@test.com", "test");
+		userService.saveManager(dto4);
 	}
 	
 	@ModelAttribute("user")

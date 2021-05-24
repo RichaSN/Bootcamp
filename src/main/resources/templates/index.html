@@ -27,8 +27,13 @@
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li sec:authentication="principal.authorities">Roles</li>
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+				</ul>
+			</div>
+			<div id="navbar2" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li sec:authentication="principal.username">Username</li>
+					<li sec:authentication="principal.authorities">Roles</li>
 				</ul>
 			</div>
 		</div>
@@ -47,19 +52,23 @@
 				<tr>
 					<th>
 						<a th:href="@{'/page/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${reverseSortDir}}">
-							Employee First Name</a>
+							First Name</a>
 					</th>
 					<th>
 					<a th:href="@{'/page/' + ${currentPage} + '?sortField=lastName&sortDir=' + ${reverseSortDir}}">
-							Employee Last Name</a>
+							Last Name</a>
 					</th>
 					<th>
 					<a th:href="@{'/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">
-							Employee Email</a>
+							Email</a>
 					</th>
 					<th>
 					<a th:href="@{'/page/' + ${currentPage} + '?sortField=bootcampLastAttended&sortDir=' + ${reverseSortDir}}">
 							Boot Camp Last attended</a>
+					</th>
+					<th>
+					<a th:href="@{'/page/' + ${currentPage} + '?sortField=managerUserName&sortDir=' + ${reverseSortDir}}">
+							Manager</a>
 					</th>
 					<th> Actions </th>
 				</tr>
@@ -70,6 +79,7 @@
 					<td th:text="${employee.lastName}"></td>
 					<td th:text="${employee.email}"></td>
 					<td th:text="${employee.bootcampLastAttended}"></td>
+					<td th:text="${employee.managerUserName}"></td>
 					<td> <a th:href="@{/showFormForUpdate/{id}(id=${employee.id})}" class="btn btn-primary">Update</a>
 					    <a th:href="@{/deleteEmployee/{id}(id=${employee.id})}" class="btn btn-danger">Delete</a>
 					</td>
